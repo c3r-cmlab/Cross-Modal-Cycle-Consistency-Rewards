@@ -7,7 +7,7 @@
   <meta name="title" content="C3R: Cross-Modal Cycle Consistency Rewards Improve Multimodal Reasoning">
   <meta name="description" content="C3R introduces cross-modal cycle consistency rewards for multimodal large language models, turning modality conflicts into label-free reinforcement signals and improving visual–textual reasoning accuracy by up to 7.6 points.">
   <meta name="keywords" content="multimodal reasoning, vision-language models, reinforcement learning, cycle consistency, C3R, cross-modal rewards, self-supervised RL, modality gap">
-  <meta name="author" content="First Author, Second Author">
+  <meta name="author" content="Zirui Zhang, Haoyu Dong, Kexin Pei, Chengzhi Mao">
   <meta name="robots" content="index, follow">
   <meta name="language" content="English">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +29,7 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <title>C3R: Cross-Modal Cycle Consistency Rewards Improve Multimodal Reasoning</title>
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="static/images/ico.ico">
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
@@ -91,7 +91,6 @@
               </a>
             </div>
 
-
             <div class="column has-text-centered">
               <div class="publication-links">
                 <!-- PDF link -->
@@ -106,7 +105,8 @@
                   </a>
                 </span>
 
-                <!-- ArXiv abstract link (replace with real arXiv ID when available) -->
+                <!-- ArXiv abstract link (optional) -->
+                <!--
                 <span class="link-block">
                   <a href="https://arxiv.org/abs/XXXX.XXXXX" target="_blank"
                      class="external-link button is-normal is-rounded is-dark">
@@ -116,6 +116,7 @@
                     <span>arXiv</span>
                   </a>
                 </span>
+                -->
 
               </div>
             </div>
@@ -126,50 +127,82 @@
     </div>
   </section>
 
-  <!-- Top carousel: high-level qualitative demos -->
+  <!-- Motivation figure (Fig. 1: modality gap) -->
   <section class="hero teaser">
     <div class="hero-body">
       <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-full">
+            <figure class="image">
+              <img
+                src="static/images/fig1_modality_gap.png"
+                alt="Modality gap example where screenshot and HTML views of the same webpage yield conflicting answers."
+                style="max-width:70%; height:auto; display:block; margin:0 auto;"
+              >
+              <figcaption
+                style="
+                  margin-top: 0.75rem;
+                  font-size: 1.15rem;
+                  line-height: 1.55;
+                  max-width: 820px;
+                  margin-left: auto;
+                  margin-right: auto;
+                  text-align: left;
+                  display: flex;
+                  align-items: center;
+                "
+              >
+                <!-- 左侧标签块 -->
+                <span
+                  style="
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center; 
+                    height: 50px;
+                    padding: 0 12px;
+                    background: #eeeef2;
+                    color: #2A3F66;
+                    border-radius: 2px;
+                    font-weight: 600;
+                    white-space: nowrap;
+                    margin-right: 14px;
+                  "
+                >
+                  Modality Gap
+                </span>
 
-        <div id="results-carousel" class="carousel results-carousel">
-          <div class="item item-video1">
-            <video poster="" id="header-video1" autoplay muted loop playsinline height="100%" src="static/videos/banner_video.mp4">
-            </video>
-            <h2 class="subtitle has-text-centered">
-              C3R addresses the modality gap in multimodal large language models by turning
-              cross-modal contradictions into dense, label-free rewards. Given paired visual
-              (e.g., webpage screenshots) and textual (e.g., HTML) views of the same content,
-              our method enforces a four-way cycle consistency over image and text, teaching
-              the model to resolve its own internal conflicts and improving robustness on web
-              and document understanding tasks.
-            </h2>
-          </div>
-
-          <div class="item item-video2">
-            <video poster="" id="header-video2" autoplay muted loop playsinline height="100%" src="static/videos/img2vid_turtle.mp4">
-            </video>
-            <h2 class="subtitle has-text-centered">
-              In many real-world pages, the base multimodal model produces different answers
-              when queried on the screenshot versus on the underlying HTML. C3R identifies
-              such cross-modal disagreements and uses them as hard examples: by rewarding
-              cycles that remain consistent across modalities, the model becomes both more
-              accurate and more self-consistent on challenging benchmarks.
-            </h2>
-          </div>
-
-          <div class="item item-video3">
-            <video poster="" id="header-video3" autoplay muted loop playsinline height="100%" src="static/videos/subj_driv_lifting.mp4">
-            </video>
-            <h2 class="subtitle has-text-centered">
-              Our four-way cycle constructs latent queries from a candidate answer in both the
-              text and image views, then performs forward inference along T→T, T→I, I→T,
-              and I→I paths. Cycles that reconstruct the original answer consistently receive
-              higher reward, while inconsistent cycles are penalized, effectively aligning
-              multimodal representations without human-labeled QA pairs.
-            </h2>
+                <!-- 右侧正文 -->
+                <span>
+                  Given the same webpage, an MLLM produces different answers when queried on the
+                  <span
+                    style="
+                      padding: 1px 6px;
+                      background: #e6e4f7;
+                      color: #3A4F6E;
+                      border-radius: 6px;
+                      display: inline-block;
+                    "
+                  >
+                    Screenshot
+                  </span>
+                  &nbsp;versus the&nbsp;
+                  <span
+                    style="
+                      padding: 1px 6px;
+                      background: #e6e4f7;
+                      color: #3A4F6E;
+                      border-radius: 6px;
+                      display: inline-block;
+                    "
+                  >
+                    HTML
+                  </span>
+                  &nbsp;view, motivating C3R.
+                </span>
+              </figcaption>
+            </figure>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -203,246 +236,382 @@
     </div>
   </section>
 
-  <!-- Multimodal reasoning examples -->
-  <section class="hero is-small">
+  <!-- ===== ONE-FIGURE-PER-SECTION SECTIONS START HERE ===== -->
+
+  <!-- Section: Failure of Majority Voting (Figure 2) -->
+  <section class="section hero is-small">
     <div class="hero-body">
       <div class="container is-max-desktop">
-        <h2 class="title is-3">Multimodal Reasoning Examples</h2>
-        <div id="results-carousel" class="carousel results-carousel">
-          <div class="item item-video1">
-            <video poster="" id="vid2vid_video1" playsinline autoplay muted loop height="90%" src="static/videos/vid2vid_leaping.mp4">
-            </video>
-          </div>
-          <div class="item item-video2">
-            <video poster="" id="vid2vid_video2" playsinline autoplay muted loop height="90%" src="static/videos/vid2vid_party_hat.mp4">
-            </video>
-          </div>
-          <div class="item item-video3">
-            <video poster="" id="vid2vid_video3" playsinline autoplay muted loop height="90%" src="static/videos/vid2vid_robot.mp4">
-            </video>
-          </div>
-          <div class="item item-video4">
-            <video poster="" id="vid2vid_video4" playsinline autoplay muted loop height="90%" src="static/videos/vid2vid_cake.mp4">
-            </video>
-          </div>
-          <div class="item item-video5">
-            <video poster="" id="vid2vid_video5" playsinline autoplay muted loop height="90%" src="static/videos/vid2vid_orangutan_hello.mp4">
-            </video>
-          </div>
-          <div class="item item-video6">
-            <video poster="" id="vid2vid_video6" playsinline autoplay muted loop height="90%" src="static/videos/vid2vid_truck_zoom.mp4">
-            </video>
-          </div>
-          <div class="item item-video7">
-            <video poster="" id="vid2vid_video7" playsinline autoplay muted loop height="90%" src="static/videos/vid2vid_fire.mp4">
-            </video>
-          </div>
-          <div class="item item-video8">
-            <video poster="" id="vid2vid_video8" playsinline autoplay muted loop height="90%" src="static/videos/vid2vid_cats.mp4">
-            </video>
-          </div>
-          <div class="item item-video9">
-            <video poster="" id="vid2vid_video9" playsinline autoplay muted loop height="90%" src="static/videos/vid2vid_skateboard.mp4">
-            </video>
-          </div>
-          <div class="item item-video10">
-            <video poster="" id="vid2vid_video10" playsinline autoplay muted loop height="90%" src="static/videos/vid2vid_truck_logs.mp4">
-            </video>
-          </div>
-          <div class="item item-video11">
-            <video poster="" id="vid2vid_video11" playsinline autoplay muted loop height="90%" src="static/videos/vid2vid_noodles.mp4">
-            </video>
-          </div>
-          <div class="item item-video12">
-            <video poster="" id="vid2vid_video12" playsinline autoplay muted loop height="90%" src="static/videos/vid2vid_circle.mp4">
-            </video>
-          </div>
-          <div class="item item-video13">
-            <video poster="" id="vid2vid_video13" playsinline autoplay muted loop height="90%" src="static/videos/vid2vid_orangutan_hello2.mp4">
-            </video>
-          </div>
-          <div class="item item-video14">
-            <video poster="" id="vid2vid_video14" playsinline autoplay muted loop height="90%" src="static/videos/vid2vid_football.mp4">
-            </video>
-          </div>
-          <div class="item item-video15">
-            <video poster="" id="vid2vid_video15" playsinline autoplay muted loop height="90%" src="static/videos/vid2vid_orangutan_bath.mp4">
-            </video>
-          </div>
-          <div class="item item-video16">
-            <video poster="" id="vid2vid_video16" playsinline autoplay muted loop height="90%" src="static/videos/vid2vid_truck_river.mp4">
-            </video>
-          </div>
-          <div class="item item-video17">
-            <video poster="" id="vid2vid_video17" playsinline autoplay muted loop height="90%" src="static/videos/vid2vid_swans.mp4">
-            </video>
-          </div>
-          <div class="item item-video18">
-            <video poster="" id="vid2vid_video18" playsinline autoplay muted loop height="90%" src="static/videos/vid2vid_saxophone.mp4">
-            </video>
+        <div class="columns is-centered">
+          <div class="column is-full">
+            <h2 class="title is-3 has-text-centered">When Majority Voting Breaks</h2>
+            <p class="subtitle is-5 has-text-centered"
+               style="max-width: 760px; margin: 0 auto 1.5rem;">
+              Cross-modal disagreements are common: the same input yields different answers
+              from the screenshot and the HTML view. Simple majority voting over these
+              inconsistent predictions can reinforce the wrong answer instead of correcting it.
+            </p>
+            <figure class="image"
+                    style="
+                      max-width: 900px;
+                      margin: 0 auto;
+                      background: #ffffff;
+                      border-radius: 12px;
+                      box-shadow: 0 10px 30px rgba(15,23,42,0.08);
+                      padding: 1.25rem;
+                    ">
+              <img src="static/images/fig2_voting_failure.png"
+                   alt="Failure of multimodal majority voting when image and text predictions are inconsistent."
+                   style="border-radius: 8px;">
+              <figcaption class="has-text-justified"
+                          style="margin-top: 0.75rem; font-size: 0.95rem; color:#4a4a4a;">
+                Modality gap and failure of majority voting. For the same webpage, the
+                screenshot and HTML views drive an MLLM to different answers. Aggregating
+                image-only and text-only predictions with majority voting can still output the
+                wrong label, especially when both modalities share a systematic bias. This
+                motivates using cross-modal consistency, rather than majority count, as a
+                training signal.
+              </figcaption>
+            </figure>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Cross-modal consistency case studies -->
-  <section class="hero is-small is-light">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <h2 class="title is-3">Cross-Modal Consistency Case Studies</h2>
-        <div id="results-carousel" class="carousel results-carousel">
-          <div class="item item-video1">
-            <video poster="" id="img2vid_video1" playsinline autoplay muted loop height="90%" src="static/videos/img2vid_plant.mp4">
-            </video>
-          </div>
-          <div class="item item-video2">
-            <video poster="" id="img2vid_video2" playsinline autoplay muted loop height="90%" src="static/videos/img2vid_buffalo.mp4">
-            </video>
-          </div>
-          <div class="item item-video3">
-            <video poster="" id="img2vid_video3" playsinline autoplay muted loop height="90%" src="static/videos/img2vid_grizzly.mp4">
-            </video>
-          </div>
-          <div class="item item-video4">
-            <video poster="" id="img2vid_video4" playsinline autoplay muted loop height="90%" src="static/videos/img2vid_coffee.mp4">
-            </video>
-          </div>
-          <div class="item item-video5">
-            <video poster="" id="img2vid_video5" playsinline autoplay muted loop height="90%" src="static/videos/img2vid_camel.mp4">
-            </video>
-          </div>
-          <div class="item item-video6">
-            <video poster="" id="img2vid_video6" playsinline autoplay muted loop height="90%" src="static/videos/img2vid_pengiun.mp4">
-            </video>
-          </div>
-          <div class="item item-video7">
-            <video poster="" id="img2vid_video7" playsinline autoplay muted loop height="90%" src="static/videos/img2vid_unicorn.mp4">
-            </video>
-          </div>
-          <div class="item item-video8">
-            <video poster="" id="img2vid_video8" playsinline autoplay muted loop height="90%" src="static/videos/img2vid_bigfoot.mp4">
-            </video>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Ablations and Analysis -->
-  <section class="hero is-small">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <h2 class="title is-3">Ablations and Analysis</h2>
-        <div id="results-carousel" class="carousel results-carousel">
-          <div class="item item-video1">
-            <video poster="" id="sd_video1" playsinline autoplay muted loop height="90%" src="static/videos/subj_driv_walking.mp4">
-            </video>
-          </div>
-          <div class="item item-video2">
-            <video poster="" id="sd_video2" playsinline autoplay muted loop height="90%" src="static/videos/subj_driv_drinking.mp4">
-            </video>
-          </div>
-          <div class="item item-video3">
-            <video poster="" id="sd_video3" playsinline autoplay muted loop height="90%" src="static/videos/subj_driv_dancing.mp4">
-            </video>
-          </div>
-          <div class="item item-video4">
-            <video poster="" id="sd_video4" playsinline autoplay muted loop height="90%" src="static/videos/subj_driv_stretching.mp4">
-            </video>
-          </div>
-          <div class="item item-video5">
-            <video poster="" id="sd_video5" playsinline autoplay muted loop height="90%" src="static/videos/subj_driv_magnifying.mp4">
-            </video>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Method overview -->
+  <!-- Section: C3R Framework Overview (Figure 3) -->
   <section class="section hero is-small is-light">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column is-full">
-          <div class="content">
-            <h2 class="title is-3">Method Overview: Cross-Modal Cycle Consistency Rewards</h2>
-            <center>
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-full">
+            <h2 class="title is-3 has-text-centered">C3R: Cross-Modal Cycle Consistency Rewards</h2>
+            <p class="subtitle is-5 has-text-centered"
+               style="max-width: 780px; margin: 0 auto 1.5rem;">
+              C3R turns cross-modal contradictions into rewards. From a candidate answer,
+              the model performs backward reasoning to synthesize queries and then runs
+              forward inference across text and image views, checking whether the cycle
+              returns to the original answer.
+            </p>
+            <figure class="image"
+                    style="
+                      max-width: 900px;
+                      margin: 0 auto;
+                      background: #ffffff;
+                      border-radius: 12px;
+                      box-shadow: 0 10px 30px rgba(15,23,42,0.08);
+                      padding: 1.25rem;
+                    ">
               <img src="static/images/c3r_cycle_overview.png"
-                   alt="C3R cross-modal cycle consistency overview"
-                   class="center-image blend-img-background"/>
-            </center>
-            <div class="level-set has-text-justified">
-              <p>
-                C3R starts from a candidate answer and performs backward inference to reconstruct
-                latent queries from both the text view <em>x<sub>T</sub></em> and the image view
-                <em>x<sub>I</sub></em>. Each reconstructed query is then used for forward inference
-                across both modalities, producing four reconstructed answers along the T→T, T→I,
-                I→T, and I→I paths. Cycle consistency is measured by whether these reconstructed
-                answers remain consistent with the original candidate. Consistent cycles receive
-                higher reward, while inconsistent ones are penalized, and this cycle-consistency
-                reward is used in a GRPO objective to improve the multimodal LLM’s reasoning
-                capability without any human-labeled QA pairs.
-              </p>
-            </div>
+                   alt="Overview of the C3R cross-modal cycle consistency framework."
+                   style="border-radius: 8px;">
+              <figcaption class="has-text-justified"
+                          style="margin-top: 0.75rem; font-size: 0.95rem; color:#4a4a4a;">
+                Overview of C3R. Starting from an answer proposed by the base MLLM,
+                C3R performs answer-to-query backward inference in both text and image
+                modalities, then executes forward passes along four paths:
+                text→text, text→image, image→text, and image→image.
+                Cycles that reconstruct the original answer consistently are rewarded,
+                while cycles that drift to a different answer are penalized. These
+                cross-modal cycle rewards are plugged into a GRPO objective to
+                improve multimodal reasoning without any extra human labels.
+              </figcaption>
+            </figure>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Inference / training overview -->
+  <!-- Section: Backward Inference + VWA MC carousel -->
   <section class="section is-small">
     <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column is-full">
-          <div class="content">
-            <h2 class="title is-3">Inference Overview</h2>
-            <center>
-              <img src="static/images/c3r_training_inference.png"
-                   alt="C3R training and inference pipeline"
-                   class="center-image"/>
-            </center>
-            <div class="level-set has-text-justified">
-              <p>
-                Our framework operates on naturally occurring multimodal data, such as webpages
-                with both screenshots and HTML source, or visual question answering benchmarks
-                where we construct complementary text views via captioning. During training,
-                the model samples candidate answers, performs backward inference to obtain
-                synthetic queries, and then executes cross-modal forward passes to reconstruct
-                the answers. Comparing the reconstructed answers with the originals yields a
-                binary cycle-consistency reward, which we plug into a GRPO objective to update
-                the multimodal LLM. At inference time, the trained model exhibits improved
-                accuracy and consistency across both visual and textual inputs on benchmarks
-                including ScienceQA, ChartQA, InfoVQA, MathVista, A-OKVQA, and Visual Web
-                Arena.
+
+      <h2 class="title is-3 has-text-centered">Answer-to-Query Backward Inference</h2>
+
+      <p class="subtitle is-5 has-text-centered"
+         style="max-width:760px; margin:0 auto 1.5rem;">
+        Backward inference asks the model to justify its own answer:
+        <em>“for this answer to be correct, what query must have been asked?”</em>
+        C3R applies this in both text and image views, together with our reconstructed
+        <strong>VisualWebArena multiple-choice dataset</strong>.
+      </p>
+
+      <div id="backward-carousel" class="carousel results-carousel">
+
+        <!-- Slide 1 (exact same structure as benchmark slides) -->
+        <div class="item">
+          <div class="card"
+               style="border-radius:14px; box-shadow:0 12px 30px rgba(15,23,42,0.10); overflow:hidden;">
+            <div class="card-image" style="background: linear-gradient(135deg,#ecebff,#f4f3ff);">
+              <figure class="image benchmark-figure"
+                      style="padding:1.25rem 1.25rem 0.75rem;">
+                <img src="static/images/fig4_backward_examples.png"
+                     alt="Backward inference examples"
+                     style="border-radius:10px;">
+              </figure>
+            </div>
+            <div class="card-content" style="padding:1.0rem 1.4rem 1.3rem;">
+              <p class="title is-5" style="margin-bottom:0.4rem;">
+                Backward Inference Examples
+              </p>
+              <p class="content is-size-6" style="margin-bottom:0;">
+                Backward inference reveals how the model grounds answers through structured
+                visual and textual evidence, forming the first half of the cross-modal cycle.
               </p>
             </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="item">
+          <div class="card"
+               style="border-radius:14px; box-shadow:0 12px 30px rgba(15,23,42,0.10); overflow:hidden;">
+            <div class="card-image" style="background: linear-gradient(135deg,#ecebff,#f4f3ff);">
+              <figure class="image benchmark-figure"
+                      style="padding:1.25rem 1.25rem 0.75rem;">
+                <img src="static/images/fig_vwa_mc_examples.png"
+                     alt="VisualWebArena MC dataset examples"
+                     style="border-radius:10px;">
+              </figure>
+            </div>
+            <div class="card-content" style="padding:1.0rem 1.4rem 1.3rem;">
+              <p class="title is-5" style="margin-bottom:0.4rem;">
+                Dataset-Level Visualization
+              </p>
+              <p class="content is-size-6" style="margin-bottom:0;">
+                Examples from the reconstructed VisualWebArena multiple-choice dataset,
+                covering product classification, attribute queries, price reasoning, etc.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="has-text-centered is-size-7"
+         style="margin-top:0.9rem; color:#6b7280;">
+        Swipe horizontally, drag, or use the carousel arrows to browse backward-inference and dataset visualizations.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- Cross-Modal Case Studies Across Benchmarks -->
+  <section class="hero is-small is-light">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+
+        <h2 class="title is-3 has-text-centered">
+          Cross-Modal Case Studies Across Benchmarks
+        </h2>
+
+        <p class="subtitle is-5 has-text-centered"
+           style="max-width: 820px; margin: 0 auto 1.5rem;">
+          We evaluate C3R on six multimodal reasoning benchmarks and observe
+          consistent gains in both <span class="has-text-weight-semibold">accuracy</span>
+          and <span class="has-text-weight-semibold">cross-modal consistency</span>.
+          The carousel below summarizes quantitative improvements and
+          representative qualitative case studies.
+        </p>
+
+        <!-- 横向滑动 carousel：accuracy / consistency / case study -->
+        <div id="benchmarks-carousel" class="carousel results-carousel">
+
+          <!-- Slide 1: Accuracy table -->
+          <div class="item">
+            <div class="card"
+                 style="
+                   border-radius: 14px;
+                   box-shadow: 0 12px 30px rgba(15,23,42,0.10);
+                   overflow: hidden;
+                 ">
+              <div class="card-image"
+                   style="background: linear-gradient(135deg,#e0dcfa,#f3f4ff);">
+                <figure class="image benchmark-figure"
+                        style="padding: 1.25rem 1.25rem 0.75rem;">
+                  <!-- 换成你的 accuracy 总表图 -->
+                  <img src="static/images/tab_accuracy_overview.png"
+                       alt="Overall accuracy of base model, voting baselines, and C3R across all benchmarks."
+                       style="border-radius: 10px;">
+                </figure>
+              </div>
+              <div class="card-content" style="padding: 1.0rem 1.4rem 1.3rem;">
+                <p class="title is-5" style="margin-bottom:0.4rem;">
+                  Accuracy Gains Over Baselines
+                </p>
+                <p class="content is-size-6" style="margin-bottom:0;">
+                  C3R improves accuracy on all six benchmarks compared to the
+                  base MLLM and multimodal voting. Improvements reach
+                  <strong>+7.6 points</strong> on the most challenging
+                  datasets, showing that resolving cross-modal contradictions
+                  translates directly into better task performance.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2: Consistency table -->
+          <div class="item">
+            <div class="card"
+                 style="
+                   border-radius: 14px;
+                   box-shadow: 0 12px 30px rgba(15,23,42,0.10);
+                   overflow: hidden;
+                 ">
+              <div class="card-image"
+                   style="background: linear-gradient(135deg,#dbeafe,#eef2ff);">
+                <figure class="image benchmark-figure"
+                        style="padding: 1.25rem 1.25rem 0.75rem;">
+                  <!-- 换成你的 consistency / agreement 表格图 -->
+                  <img src="static/images/tab_consistency_overview.png"
+                       alt="Cross-modal agreement between screenshot and HTML views for different training methods."
+                       style="border-radius: 10px;">
+                </figure>
+              </div>
+              <div class="card-content" style="padding: 1.0rem 1.4rem 1.3rem;">
+                <p class="title is-5" style="margin-bottom:0.4rem;">
+                  Cross-Modal Consistency Improvements
+                </p>
+                <p class="content is-size-6" style="margin-bottom:0;">
+                  Beyond accuracy, C3R substantially increases agreement between
+                  <span class="has-text-weight-semibold">screenshot</span> and
+                  <span class="has-text-weight-semibold">HTML</span> views.
+                  Disagreement rates drop across all datasets, indicating that
+                  cycle-consistency rewards make the model’s visual and textual
+                  predictions more stable and aligned.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3: Qualitative case studies -->
+          <div class="item">
+            <div class="card"
+                 style="
+                   border-radius: 14px;
+                   box-shadow: 0 12px 30px rgba(15,23,42,0.10);
+                   overflow: hidden;
+                 ">
+              <div class="card-image"
+                   style="background: linear-gradient(135deg,#fef3c7,#e0f2fe);">
+                <figure class="image benchmark-figure"
+                        style="padding: 1.25rem 1.25rem 0.75rem;">
+                  <!-- 换成你的 case study 图（原 Fig.5） -->
+                  <img src="static/images/fig_case_studies.png"
+                       alt="Qualitative examples comparing base model, voting, and C3R across multiple benchmarks."
+                       style="border-radius: 10px;">
+                </figure>
+              </div>
+              <div class="card-content" style="padding: 1.0rem 1.4rem 1.3rem;">
+                <p class="title is-5" style="margin-bottom:0.4rem;">
+                  Case Studies Across Benchmarks
+                </p>
+                <p class="content is-size-6" style="margin-bottom:0;">
+                  Qualitative examples from ScienceQA, ChartQA, DocVQA, InfoVQA,
+                  MathVista, and VisualWebArena show that when the base model or
+                  voting baselines are confused by modality-specific biases,
+                  C3R leverages backward–forward cycles to recover answers that
+                  are correct and cross-modally consistent.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="has-text-centered is-size-7"
+           style="margin-top: 0.9rem; color:#6b7280;">
+          Swipe horizontally, drag, or use the carousel arrows to browse
+          quantitative and qualitative results.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Which Cycles Matter (Figure 6) -->
+  <section class="section hero is-small">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-full">
+            <h2 class="title is-3 has-text-centered">Which Cycles Matter Most?</h2>
+            <p class="subtitle is-5 has-text-centered"
+               style="max-width: 780px; margin: 0 auto 1.5rem;">
+              C3R supports many combinations of backward and forward modalities.
+              Ablations reveal which paths contribute most to accuracy and
+              self-consistency.
+            </p>
+            <figure class="image"
+                    style="
+                      max-width: 900px;
+                      margin: 0 auto;
+                      background: #ffffff;
+                      border-radius: 12px;
+                      box-shadow: 0 10px 30px rgba(15,23,42,0.08);
+                      padding: 1.25rem;
+                    ">
+              <img src="static/images/fig6_cycle_paths_heatmap.png"
+                   alt="Heatmaps showing the impact of different backward/forward cycle paths."
+                   style="border-radius: 8px;">
+              <figcaption class="has-text-justified"
+                          style="margin-top: 0.75rem; font-size: 0.95rem; color:#4a4a4a;">
+                Ablation over cycle paths. The heatmaps visualize accuracy and
+                cross-modal agreement when selectively enabling different pairs of
+                backward and forward modalities. Mixed cycles that traverse both
+                text and image views outperform single-modality cycles, confirming
+                that explicitly enforcing cross-modal consistency is key to the gains
+                of C3R.
+              </figcaption>
+            </figure>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Video Presentation -->
-  <section class="hero is-small is-light">
+  <!-- Section: Training on Harder Inconsistencies (Figure 7) -->
+  <section class="section hero is-small is-light">
     <div class="hero-body">
-      <div class="container">
-        <h2 class="title is-3">Video Presentation</h2>
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-four-fifths">
-            <div class="publication-video">
-              <!-- Replace XXXXXXXXXXX with your own YouTube video ID -->
-              <iframe src="https://www.youtube.com/embed/XXXXXXXXXXX"
-                      frameborder="0"
-                      allow="autoplay; encrypted-media"
-                      allowfullscreen></iframe>
-            </div>
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-full">
+            <h2 class="title is-3 has-text-centered">Learning from Cross-Modal Conflicts</h2>
+            <p class="subtitle is-5 has-text-centered"
+               style="max-width: 780px; margin: 0 auto 1.5rem;">
+              Not all training examples are equally informative. Samples where
+              image and text views strongly disagree turn out to be the most
+              valuable for improving both accuracy and consistency.
+            </p>
+            <figure class="image"
+                    style="
+                      max-width: 900px;
+                      margin: 0 auto;
+                      background: #ffffff;
+                      border-radius: 12px;
+                      box-shadow: 0 10px 30px rgba(15,23,42,0.08);
+                      padding: 1.25rem;
+                    ">
+              <img src="static/images/fig7_inconsistency_curve.png"
+                   alt="Effect of training on increasingly inconsistent samples."
+                   style="border-radius: 8px;">
+              <figcaption class="has-text-justified"
+                          style="margin-top: 0.75rem; font-size: 0.95rem; color:#4a4a4a;">
+                Effect of inconsistency-aware training. As C3R is trained on samples
+                with higher cross-modal disagreement, both task accuracy and
+                agreement between modalities improve. This shows that the hardest
+                conflicts—where text and image most disagree—provide the strongest
+                self-supervised signal for aligning multimodal reasoning.
+              </figcaption>
+            </figure>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- ===== ONE-FIGURE-PER-SECTION SECTIONS END HERE ===== -->
 
   <!-- BibTeX -->
   <section class="section" id="BibTeX">
@@ -450,7 +619,7 @@
       <h2 class="title">BibTeX</h2>
       <pre><code>@article{c3r2025cross,
   title   = {C3R: Cross-Modal Cycle Consistency Rewards Improve Multimodal Reasoning},
-  author  = {First Author and Second Author},
+  author  = {Zirui Zhang, Haoyu Dong, Kexin Pei, Chengzhi Mao},
   journal = {arXiv preprint},
   year    = {2025}
 }</code></pre>

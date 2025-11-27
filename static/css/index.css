@@ -139,3 +139,20 @@ body {
     mix-blend-mode: multiply;
 }
 
+/* 统一 Carousel 三个 slide 的图像高度 */
+.benchmark-figure {
+  height: 650px;              /* 统一高度，可按需要调 360 / 400 等 */
+  display: flex;
+  align-items: center;        /* 图在容器内垂直居中 */
+  justify-content: center;    /* 水平居中 */
+  overflow: hidden;           /* 多余部分裁掉，避免撑高 */
+  margin-bottom: 1.1rem;      /* 和下面说明文字留一点间距 */
+}
+
+.benchmark-figure img {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  object-fit: contain;        /* 保持比例缩放，完整显示整张图 */
+}
+

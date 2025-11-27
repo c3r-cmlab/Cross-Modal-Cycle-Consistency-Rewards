@@ -251,28 +251,32 @@
               from the screenshot and the HTML view. Simple majority voting over these
               inconsistent predictions can reinforce the wrong answer instead of correcting it.
             </p>
-            <figure class="image"
-                    style="
-                      max-width: 900px;
-                      margin: 0 auto;
-                      background: #ffffff;
-                      border-radius: 12px;
-                      box-shadow: 0 10px 30px rgba(15,23,42,0.08);
-                      padding: 1.25rem;
-                    ">
-              <img src="static/images/fig2_voting_failure.png"
-                   alt="Failure of multimodal majority voting when image and text predictions are inconsistent."
-                   style="border-radius: 8px;">
-              <figcaption class="has-text-justified"
-                          style="margin-top: 0.75rem; font-size: 0.95rem; color:#4a4a4a;">
-                Modality gap and failure of majority voting. For the same webpage, the
-                screenshot and HTML views drive an MLLM to different answers. Aggregating
-                image-only and text-only predictions with majority voting can still output the
-                wrong label, especially when both modalities share a systematic bias. This
-                motivates using cross-modal consistency, rather than majority count, as a
-                training signal.
-              </figcaption>
-            </figure>
+
+            <!-- card-style figure -->
+            <div class="card"
+                 style="border-radius:14px; box-shadow:0 12px 30px rgba(15,23,42,0.10); overflow:hidden;">
+              <div class="card-image" style="background: linear-gradient(135deg,#fee2e2,#fff7ed);">
+                <figure class="image"
+                        style="padding:0.5rem 0.5rem 0.25rem; max-width:960px; margin:0 auto;">
+                  <img src="static/images/fig2_voting_failure.png"
+                       alt="Failure of multimodal majority voting when image and text predictions are inconsistent."
+                       style="border-radius:10px;">
+                </figure>
+              </div>
+              <div class="card-content" style="padding:1.0rem 1.4rem 1.3rem;">
+                <p class="title is-5" style="margin-bottom:0.4rem;">
+                  Modality Gap and Majority Voting
+                </p>
+                <p class="content is-size-6" style="margin-bottom:0;">
+                  For the same webpage, screenshot and HTML views drive the MLLM to
+                  different answers. Aggregating image-only and text-only predictions by
+                  majority vote can still lock in the wrong label, especially when both
+                  modalities share a systematic bias—motivating consistency-based training
+                  instead of simple counting.
+                </p>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -293,30 +297,33 @@
               forward inference across text and image views, checking whether the cycle
               returns to the original answer.
             </p>
-            <figure class="image"
-                    style="
-                      max-width: 900px;
-                      margin: 0 auto;
-                      background: #ffffff;
-                      border-radius: 12px;
-                      box-shadow: 0 10px 30px rgba(15,23,42,0.08);
-                      padding: 1.25rem;
-                    ">
-              <img src="static/images/c3r_cycle_overview.png"
-                   alt="Overview of the C3R cross-modal cycle consistency framework."
-                   style="border-radius: 8px;">
-              <figcaption class="has-text-justified"
-                          style="margin-top: 0.75rem; font-size: 0.95rem; color:#4a4a4a;">
-                Overview of C3R. Starting from an answer proposed by the base MLLM,
-                C3R performs answer-to-query backward inference in both text and image
-                modalities, then executes forward passes along four paths:
-                text→text, text→image, image→text, and image→image.
-                Cycles that reconstruct the original answer consistently are rewarded,
-                while cycles that drift to a different answer are penalized. These
-                cross-modal cycle rewards are plugged into a GRPO objective to
-                improve multimodal reasoning without any extra human labels.
-              </figcaption>
-            </figure>
+
+            <!-- card-style figure -->
+            <div class="card"
+                 style="border-radius:14px; box-shadow:0 12px 30px rgba(15,23,42,0.10); overflow:hidden;">
+              <div class="card-image" style="background: linear-gradient(135deg,#e0ecff,#eef2ff);">
+                <figure class="image"
+                        style="padding:0.5rem 0.5rem 0.5rem; max-width:960px; margin:0 auto;">
+                  <img src="static/images/c3r_cycle_overview.png"
+                       alt="Overview of the C3R cross-modal cycle consistency framework."
+                       style="border-radius:10px;">
+                </figure>
+              </div>
+              <div class="card-content" style="padding:1.0rem 1.4rem 1.3rem;">
+                <p class="title is-5" style="margin-bottom:0.4rem;">
+                  Turning Cycles into Rewards
+                </p>
+                <p class="content is-size-6" style="margin-bottom:0;">
+                  Starting from a candidate answer, C3R runs answer-to-query backward
+                  inference in both text and image modalities, then closes four forward
+                  cycles: text→text, text→image, image→text, and image→image. Cycles
+                  that faithfully reconstruct the original answer are rewarded, while those
+                  that drift are penalized, providing dense label-free signals for GRPO
+                  training.
+                </p>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -339,7 +346,7 @@
 
       <div id="backward-carousel" class="carousel results-carousel">
 
-        <!-- Slide 1 (exact same structure as benchmark slides) -->
+        <!-- Slide 1 -->
         <div class="item">
           <div class="card"
                style="border-radius:14px; box-shadow:0 12px 30px rgba(15,23,42,0.10); overflow:hidden;">
@@ -353,11 +360,12 @@
             </div>
             <div class="card-content" style="padding:1.0rem 1.4rem 1.3rem;">
               <p class="title is-5" style="margin-bottom:0.4rem;">
-                Backward Inference Examples
+                Backward Inference Across Domains
               </p>
               <p class="content is-size-6" style="margin-bottom:0;">
-                Backward inference reveals how the model grounds answers through structured
-                visual and textual evidence, forming the first half of the cross-modal cycle.
+                Across very different tasks, backward query generation reliably turns an
+                answer into the right kind of question—showing that C3R can extract
+                meaningful supervision anywhere the model makes a prediction.
               </p>
             </div>
           </div>
@@ -423,14 +431,13 @@
             <div class="card"
                  style="
                    border-radius: 14px;
-                   box-shadow: 0 12px 30px rgba(15,23,42,0.10);
+                   box-shadow: 0 8px 30px rgba(15,23,42,0.10);
                    overflow: hidden;
                  ">
               <div class="card-image"
                    style="background: linear-gradient(135deg,#e0dcfa,#f3f4ff);">
                 <figure class="image benchmark-figure"
                         style="padding: 1.25rem 1.25rem 0.75rem;">
-                  <!-- 换成你的 accuracy 总表图 -->
                   <img src="static/images/tab_accuracy_overview.png"
                        alt="Overall accuracy of base model, voting baselines, and C3R across all benchmarks."
                        style="border-radius: 10px;">
@@ -456,14 +463,13 @@
             <div class="card"
                  style="
                    border-radius: 14px;
-                   box-shadow: 0 12px 30px rgba(15,23,42,0.10);
+                   box-shadow: 0 8px 30px rgba(15,23,42,0.10);
                    overflow: hidden;
                  ">
               <div class="card-image"
                    style="background: linear-gradient(135deg,#dbeafe,#eef2ff);">
                 <figure class="image benchmark-figure"
                         style="padding: 1.25rem 1.25rem 0.75rem;">
-                  <!-- 换成你的 consistency / agreement 表格图 -->
                   <img src="static/images/tab_consistency_overview.png"
                        alt="Cross-modal agreement between screenshot and HTML views for different training methods."
                        style="border-radius: 10px;">
@@ -490,14 +496,13 @@
             <div class="card"
                  style="
                    border-radius: 14px;
-                   box-shadow: 0 12px 30px rgba(15,23,42,0.10);
+                   box-shadow: 0 8px 30px rgba(15,23,42,0.10);
                    overflow: hidden;
                  ">
               <div class="card-image"
                    style="background: linear-gradient(135deg,#fef3c7,#e0f2fe);">
                 <figure class="image benchmark-figure"
-                        style="padding: 1.25rem 1.25rem 0.75rem;">
-                  <!-- 换成你的 case study 图（原 Fig.5） -->
+                        style="padding: 1rem 0rem 0.75rem;">
                   <img src="static/images/fig_case_studies.png"
                        alt="Qualitative examples comparing base model, voting, and C3R across multiple benchmarks."
                        style="border-radius: 10px;">
@@ -543,28 +548,32 @@
               Ablations reveal which paths contribute most to accuracy and
               self-consistency.
             </p>
-            <figure class="image"
-                    style="
-                      max-width: 900px;
-                      margin: 0 auto;
-                      background: #ffffff;
-                      border-radius: 12px;
-                      box-shadow: 0 10px 30px rgba(15,23,42,0.08);
-                      padding: 1.25rem;
-                    ">
-              <img src="static/images/fig6_cycle_paths_heatmap.png"
-                   alt="Heatmaps showing the impact of different backward/forward cycle paths."
-                   style="border-radius: 8px;">
-              <figcaption class="has-text-justified"
-                          style="margin-top: 0.75rem; font-size: 0.95rem; color:#4a4a4a;">
-                Ablation over cycle paths. The heatmaps visualize accuracy and
-                cross-modal agreement when selectively enabling different pairs of
-                backward and forward modalities. Mixed cycles that traverse both
-                text and image views outperform single-modality cycles, confirming
-                that explicitly enforcing cross-modal consistency is key to the gains
-                of C3R.
-              </figcaption>
-            </figure>
+
+            <!-- card-style figure -->
+            <div class="card"
+                 style="border-radius:14px; box-shadow:0 12px 30px rgba(15,23,42,0.10); overflow:hidden;">
+              <div class="card-image" style="background: linear-gradient(135deg,#e5e7ff,#f9fafb);">
+                <figure class="image"
+                        style="padding:1.25rem 1.25rem 0.75rem; max-width:900px; margin:0 auto;">
+                  <img src="static/images/fig6_cycle_paths_heatmap.png"
+                       alt="Heatmaps showing the impact of different backward/forward cycle paths."
+                       style="border-radius:10px;">
+                </figure>
+              </div>
+              <div class="card-content" style="padding:1.0rem 1.4rem 1.3rem;">
+                <p class="title is-5" style="margin-bottom:0.4rem;">
+                  Impact of Different Cycle Paths
+                </p>
+                <p class="content is-size-6" style="margin-bottom:0;">
+                  The heatmaps compare accuracy and agreement when enabling
+                  different pairs of backward and forward modalities. Mixed
+                  cycles that traverse both text and image views consistently
+                  outperform single-modality cycles, confirming that explicitly
+                  enforcing cross-modal consistency is key to the gains of C3R.
+                </p>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -584,27 +593,32 @@
               image and text views strongly disagree turn out to be the most
               valuable for improving both accuracy and consistency.
             </p>
-            <figure class="image"
-                    style="
-                      max-width: 900px;
-                      margin: 0 auto;
-                      background: #ffffff;
-                      border-radius: 12px;
-                      box-shadow: 0 10px 30px rgba(15,23,42,0.08);
-                      padding: 1.25rem;
-                    ">
-              <img src="static/images/fig7_inconsistency_curve.png"
-                   alt="Effect of training on increasingly inconsistent samples."
-                   style="border-radius: 8px;">
-              <figcaption class="has-text-justified"
-                          style="margin-top: 0.75rem; font-size: 0.95rem; color:#4a4a4a;">
-                Effect of inconsistency-aware training. As C3R is trained on samples
-                with higher cross-modal disagreement, both task accuracy and
-                agreement between modalities improve. This shows that the hardest
-                conflicts—where text and image most disagree—provide the strongest
-                self-supervised signal for aligning multimodal reasoning.
-              </figcaption>
-            </figure>
+
+            <!-- card-style figure -->
+            <div class="card"
+                 style="border-radius:14px; box-shadow:0 12px 30px rgba(15,23,42,0.10); overflow:hidden;">
+              <div class="card-image" style="background: linear-gradient(135deg,#fef3c7,#fffbeb);">
+                <figure class="image"
+                        style="padding:1.25rem 1.25rem 0.75rem; max-width:900px; margin:0 auto;">
+                  <img src="static/images/fig7_inconsistency_curve.png"
+                       alt="Effect of training on increasingly inconsistent samples."
+                       style="border-radius:10px;">
+                </figure>
+              </div>
+              <div class="card-content" style="padding:1.0rem 1.4rem 1.3rem;">
+                <p class="title is-5" style="margin-bottom:0.4rem;">
+                  Training on Hard Inconsistencies
+                </p>
+                <p class="content is-size-6" style="margin-bottom:0;">
+                  As C3R focuses training on samples with larger cross-modal
+                  disagreement, both task accuracy and agreement between
+                  modalities improve. The hardest conflicts—where text and image
+                  most disagree—provide the strongest self-supervised signal for
+                  aligning multimodal reasoning.
+                </p>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
